@@ -1,0 +1,20 @@
+6 s: ./tot5 -t 12
+0 s: ./totn -n 1 -all
+0 s: ./totn -n 2 -all
+0 s: ./totn -n 3 -all
+0 s: ./totn -n 4 -all
+0 s: ./totn -n 1 -mon
+0 s: ./totn -n 2 -mon
+0 s: ./totn -n 3 -mon
+0 s: ./totn -n 4 -mon
+0 s: ./totn -n 5 -mon
+28 s: ./totn -n 6 -mon -t 12
+4 s: ./totn -n 6 -s 1000000 -seed 2026 -t 12
+20 s: ./totn -n 7 -s 1000000 -seed 2026 -t 12
+397 s: ./totn -n 8 -s 5000000 -seed 2026 -t 12
+30 s: ./totn -n 9 -s 100000 -seed 2026 -t 12
+34 s: ./totn -n 10 -s 30000 -seed 2026 -t 12
+382 s: ./totn -n 11 -s 100000 -seed 2026 -t 12
+41 s: ./totn -n 12 -s 3000 -seed 2026 -t 12
+30 s: ./totn -n 9 -s 100000 -seed 7 -t 12
+30 s: ./totn -n 9 -s 100000 -seed 31337 -t 12

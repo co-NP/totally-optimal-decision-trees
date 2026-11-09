@@ -150,7 +150,9 @@ typedef struct {
     uint64_t tot, nonev, f_hl, f_ha, f_al, f_all, f_al_evasive;
     double mx_al_L, mx_al_T, mx_hl_L, mx_ha_T, sum_al_L_fail, sum_al_T_fail;
     uint64_t ex_hl[W(MAXN)], ex_ha[W(MAXN)], ex_al[W(MAXN)];
-    int has_hl, has_ha, has_al;
+    int has_hl, has_ha, has_al, has_t, has_x;
+    uint64_t triple_only, hl_not_ha; /* see report() */
+    uint64_t ex_t[W(MAXN)], ex_x[W(MAXN)];
 } stat_t;
 
 static void record(stat_t *s, const res_t *r, const uint64_t *tt)
@@ -174,6 +176,14 @@ static void record(stat_t *s, const res_t *r, const uint64_t *tt)
         if (!s->has_al++) memcpy(s->ex_al, tt, wb);
     }
     s->f_all += !r->ok_all;
+    if (!r->ok_hl && r->ok_ha) {
+        s->hl_not_ha++;
+        if (!s->has_x++) memcpy(s->ex_x, tt, wb);
+    }
+    if (r->ok_hl && r->ok_ha && r->ok_al && !r->ok_all) {
+        s->triple_only++;
+        if (!s->has_t++) memcpy(s->ex_t, tt, wb);
+    }
     if (r->price_al_L > s->mx_al_L) s->mx_al_L = r->price_al_L;
     if (r->price_al_T > s->mx_al_T) s->mx_al_T = r->price_al_T;
     if (r->price_hl_L > s->mx_hl_L) s->mx_hl_L = r->price_hl_L;
@@ -186,6 +196,9 @@ static void merge(stat_t *a, const stat_t *b)
     a->tot += b->tot; a->nonev += b->nonev;
     a->f_hl += b->f_hl; a->f_ha += b->f_ha; a->f_al += b->f_al; a->f_all += b->f_all;
     a->f_al_evasive += b->f_al_evasive;
+    a->triple_only += b->triple_only; a->hl_not_ha += b->hl_not_ha;
+    if (b->has_t && !a->has_t) { a->has_t = 1; memcpy(a->ex_t, b->ex_t, wb); }
+    if (b->has_x && !a->has_x) { a->has_x = 1; memcpy(a->ex_x, b->ex_x, wb); }
     a->sum_al_L_fail += b->sum_al_L_fail; a->sum_al_T_fail += b->sum_al_T_fail;
     if (b->mx_al_L > a->mx_al_L) a->mx_al_L = b->mx_al_L;
     if (b->mx_al_T > a->mx_al_T) a->mx_al_T = b->mx_al_T;
@@ -214,6 +227,10 @@ static void report(const char *label, const stat_t *s)
     if (s->f_al)
         printf("  havg,L failures: mean L(Tmin)/Lmin %.4f (max %.4f), mean T(Lmin)/Tmin %.4f (max %.4f)\n",
                s->sum_al_L_fail / s->f_al, s->mx_al_L, s->sum_al_T_fail / s->f_al, s->mx_al_T);
+    printf("  fail h,havg,L but every pair ok %llu\n", (unsigned long long)s->triple_only);
+    printf("  fail h,L but h,havg ok          %llu\n", (unsigned long long)s->hl_not_ha);
+    if (s->has_t) { printf("  example fail h,havg,L only: 0x"); print_tt(s->ex_t); printf("\n"); }
+    if (s->has_x) { printf("  example fail h,L but not h,havg: 0x"); print_tt(s->ex_x); printf("\n"); }
     if (s->has_ha) { printf("  example fail h,havg: 0x"); print_tt(s->ex_ha); printf("\n"); }
     if (s->has_hl) { printf("  example fail h,L:    0x"); print_tt(s->ex_hl); printf("\n"); }
     if (s->has_al) { printf("  example fail havg,L: 0x"); print_tt(s->ex_al); printf("\n"); }

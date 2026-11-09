@@ -1,0 +1,20 @@
+RAND n=9 N=100000
+  nonevasive                 0  0.000000
+  fail h,havg                0  0.000000   max T(hmin)/Tmin  1.0000
+  fail h,L                   0  0.000000   max L(hmin)/Lmin  1.0000
+  fail havg,L            86852  0.868520   (evasive among them 86852)
+  fail h,havg,L          86852  0.868520
+  havg,L failures: mean L(Tmin)/Lmin 1.0154 (max 1.0819), mean T(Lmin)/Tmin 1.0034 (max 1.0181)
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
+  example fail havg,L: 0xfb67e6b064cdb075df8bbdc938dd7b389ea2c22728ab11a4daed38eeb89fe63c6a26d901f4880d1ab27fb138d132906c4745e85ab7aee4bfa9df47eeb6abc07a
+RAND n=9 N=100000
+  nonevasive                 0  0.000000
+  fail h,havg                0  0.000000   max T(hmin)/Tmin  1.0000
+  fail h,L                   0  0.000000   max L(hmin)/Lmin  1.0000
+  fail havg,L            86653  0.866530   (evasive among them 86653)
+  fail h,havg,L          86653  0.866530
+  havg,L failures: mean L(Tmin)/Lmin 1.0154 (max 1.0767), mean T(Lmin)/Tmin 1.0034 (max 1.0179)
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
+  example fail havg,L: 0x80a8c2909a85f9dcc5f50d9486299a1f7537340b0497831c7c9d1c32021a7222c2035cc644f289aadf177134a9781ca41a727ed92010c76fea72cb9473da03a3

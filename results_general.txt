@@ -5,6 +5,8 @@ MON n=6 N=7828354
   fail havg,L            92160  0.011773   (evasive among them 60120)
   fail h,havg,L          93780  0.011980
   havg,L failures: mean L(Tmin)/Lmin 1.0682 (max 1.2581), mean T(Lmin)/Tmin 1.0512 (max 1.0600)
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
   example fail h,havg: 0xeae0eac0eae0c800
   example fail havg,L: 0xeae0eac0eae0c800
 RAND n=6 N=1000000
@@ -14,6 +16,9 @@ RAND n=6 N=1000000
   fail havg,L            70762  0.070762   (evasive among them 69096)
   fail h,havg,L          77836  0.077836
   havg,L failures: mean L(Tmin)/Lmin 1.0401 (max 1.2353), mean T(Lmin)/Tmin 1.0156 (max 1.0813)
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          1
+  example fail h,L but not h,havg: 0x1ce088fdfee2a0af
   example fail h,havg: 0x44ac6f4fdcf233f2
   example fail h,L:    0x44ac6f4fdcf233f2
   example fail havg,L: 0x1d303415a0959c4a
@@ -24,18 +29,22 @@ RAND n=7 N=1000000
   fail havg,L           261171  0.261171   (evasive among them 260940)
   fail h,havg,L         261571  0.261571
   havg,L failures: mean L(Tmin)/Lmin 1.0247 (max 1.1495), mean T(Lmin)/Tmin 1.0077 (max 1.0552)
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
   example fail h,havg: 0xb9b935e62d6be11ab0ab18cb127446d6
   example fail h,L:    0xb9b935e62d6be11ab0ab18cb127446d6
   example fail havg,L: 0xf58d003f962debed02b4750253c6ae20
-RAND n=8 N=200000
-  nonevasive                 2  0.000010
-  fail h,havg                2  0.000010   max T(hmin)/Tmin  1.0743
-  fail h,L                   2  0.000010   max L(hmin)/Lmin  1.2011
-  fail havg,L           115044  0.575220   (evasive among them 115043)
-  fail h,havg,L         115045  0.575225
-  havg,L failures: mean L(Tmin)/Lmin 1.0177 (max 1.1084), mean T(Lmin)/Tmin 1.0046 (max 1.0273)
-  example fail h,havg: 0xfbd73bfc519a1beee07206443133917bf1c5539af581dc00649071023b1adb77
-  example fail h,L:    0xfbd73bfc519a1beee07206443133917bf1c5539af581dc00649071023b1adb77
+RAND n=8 N=5000000
+  nonevasive                24  0.000005
+  fail h,havg               24  0.000005   max T(hmin)/Tmin  1.0743
+  fail h,L                  24  0.000005   max L(hmin)/Lmin  1.2011
+  fail havg,L          2878994  0.575799   (evasive among them 2878975)
+  fail h,havg,L        2878999  0.575800
+  havg,L failures: mean L(Tmin)/Lmin 1.0178 (max 1.1326), mean T(Lmin)/Tmin 1.0046 (max 1.0367)
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
+  example fail h,havg: 0x88f267cc1cd0c8fc47b8e02823e8c71d4646a289dcd0d5de078cfe2128e76fc5
+  example fail h,L:    0x88f267cc1cd0c8fc47b8e02823e8c71d4646a289dcd0d5de078cfe2128e76fc5
   example fail havg,L: 0xf58d003f962debed02b4750253c6ae2088451b74aacdf453ffa4a85f184d7653
 RAND n=9 N=100000
   nonevasive                 0  0.000000
@@ -44,6 +53,8 @@ RAND n=9 N=100000
   fail havg,L            86777  0.867770   (evasive among them 86777)
   fail h,havg,L          86777  0.867770
   havg,L failures: mean L(Tmin)/Lmin 1.0154 (max 1.0811), mean T(Lmin)/Tmin 1.0034 (max 1.0178)
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
   example fail havg,L: 0x3e5261974c0b4ff41d303415a0959c4a1919df46e7dd783844ac6f4fdcf233f2f58d003f962debed02b4750253c6ae2088451b74aacdf453ffa4a85f184d7653
 RAND n=10 N=30000
   nonevasive                 0  0.000000
@@ -52,14 +63,18 @@ RAND n=10 N=30000
   fail havg,L            29602  0.986733   (evasive among them 29602)
   fail h,havg,L          29602  0.986733
   havg,L failures: mean L(Tmin)/Lmin 1.0159 (max 1.0659), mean T(Lmin)/Tmin 1.0031 (max 1.0125)
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
   example fail havg,L: 0x943ae11ec4c6ab7e09128844b10b7e475376e94d1c1630d235d3e87b22eed3862040aa6b91fbfedcb8ed52b4d029bfc917c2a540cb42743eab1b98ef776ee8553e5261974c0b4ff41d303415a0959c4a1919df46e7dd783844ac6f4fdcf233f2f58d003f962debed02b4750253c6ae2088451b74aacdf453ffa4a85f184d7653
-RAND n=11 N=10000
+RAND n=11 N=100000
   nonevasive                 0  0.000000
   fail h,havg                0  0.000000   max T(hmin)/Tmin  1.0000
   fail h,L                   0  0.000000   max L(hmin)/Lmin  1.0000
-  fail havg,L            10000  1.000000   (evasive among them 10000)
-  fail h,havg,L          10000  1.000000
-  havg,L failures: mean L(Tmin)/Lmin 1.0173 (max 1.0505), mean T(Lmin)/Tmin 1.0030 (max 1.0081)
+  fail havg,L            99984  0.999840   (evasive among them 99984)
+  fail h,havg,L          99984  0.999840
+  havg,L failures: mean L(Tmin)/Lmin 1.0174 (max 1.0508), mean T(Lmin)/Tmin 1.0030 (max 1.0089)
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
   example fail havg,L: 0xfe802a1bbe5337b2b9be7e011d40e126c6940b97232ba18bb4670f28e4ab6ee1ada74681293d87aae1b90a816cf34a795a1e9c9353c4ff6e5e9a65196b4a481cae5acbc3e7ab45ba83f70c70ff55d13003a98cfa519bc362779be602a95c1ed5a703f5ff4c1a53f8f0f56e734d445687e4b7a68eb5772587581c84ea790e111c943ae11ec4c6ab7e09128844b10b7e475376e94d1c1630d235d3e87b22eed3862040aa6b91fbfedcb8ed52b4d029bfc917c2a540cb42743eab1b98ef776ee8553e5261974c0b4ff41d303415a0959c4a1919df46e7dd783844ac6f4fdcf233f2f58d003f962debed02b4750253c6ae2088451b74aacdf453ffa4a85f184d7653
 RAND n=12 N=3000
   nonevasive                 0  0.000000
@@ -68,4 +83,6 @@ RAND n=12 N=3000
   fail havg,L             3000  1.000000   (evasive among them 3000)
   fail h,havg,L           3000  1.000000
   havg,L failures: mean L(Tmin)/Lmin 1.0186 (max 1.0401), mean T(Lmin)/Tmin 1.0029 (max 1.0061)
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
   example fail havg,L: 0x2a8f2d3d100f5e21c3d7277f49e144a34a819396876301b936ed6fecd5613c6593f5e0cd625a2e26b7ac7c247009c34283e05b0993f13f4dd9d17b603b652f3e5dd5559070ad608001081ea598c838cc7ef5f017885ef8fc66964fee5695c4438e7d01c48ef4df27dbe7e0c60f8d97d0e8a78a1734dd9d895623e3045a8cc23e61436d2f7c55eca9129316277fe8e1c48fb097f3ba2335e1d7bf8318aaa2ac2e946083aba3a81cb3482bb1b288ea85c4736a411379d1001ac62c27de74118d3ba8740936e30424daf7b0eb16b8fb7c3edf37730f0c893ea2b98c06441662f73a14dbb24e2a9a922c5350be0ee8cdd137e6e02d19f042c524816a30083f4ab56efe802a1bbe5337b2b9be7e011d40e126c6940b97232ba18bb4670f28e4ab6ee1ada74681293d87aae1b90a816cf34a795a1e9c9353c4ff6e5e9a65196b4a481cae5acbc3e7ab45ba83f70c70ff55d13003a98cfa519bc362779be602a95c1ed5a703f5ff4c1a53f8f0f56e734d445687e4b7a68eb5772587581c84ea790e111c943ae11ec4c6ab7e09128844b10b7e475376e94d1c1630d235d3e87b22eed3862040aa6b91fbfedcb8ed52b4d029bfc917c2a540cb42743eab1b98ef776ee8553e5261974c0b4ff41d303415a0959c4a1919df46e7dd783844ac6f4fdcf233f2f58d003f962debed02b4750253c6ae2088451b74aacdf453ffa4a85f184d7653
