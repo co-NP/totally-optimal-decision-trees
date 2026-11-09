@@ -18,9 +18,9 @@ combination of the measures. They also determine whether the function is evasive
 | `tot.py` | Reference implementation using full Pareto fronts of `(h, tpl, L)` |
 | `ev.py` | Non-evasive fractions and failure rates for small n (imports `tot.py`) |
 | `reproduce.sh` | Builds the programs and regenerates every output file below |
-| `results_n5.txt` | Table 3 and the n = 5 row of Table 2 |
-| `results_small.txt` | Tables 2 and 4 for small n |
-| `results_general.txt` | Table 4 (n = 6), Table 5, and the sampled values in Table 1 |
+| `results_n5.txt` | Table 4 and the n = 5 row of Table 3 |
+| `results_small.txt` | Tables 3 and 5 for small n |
+| `results_general.txt` | Table 5 (n = 6), Table 6, and the sampled values in Table 1 |
 | `results_n9_seeds.txt` | Two further n = 9 runs with other seeds |
 | `runtimes.txt` | Wall-clock time of each run |
 
