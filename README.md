@@ -70,3 +70,7 @@ Bit `x` of a truth table is `f(x)`. In `tot.py` and `tot5.c`, `x1` is the most
 significant bit of the input, and in `totn.c`, variable `j` is bit `j`. The
 classification is invariant under permuting variables, so the two conventions
 give the same answer for the same table.
+
+## License
+
+Released under the MIT License. See `LICENSE`.
