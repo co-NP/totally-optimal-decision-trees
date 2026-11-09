@@ -1,0 +1,73 @@
+ALL n=1 N=4
+  nonevasive                 2  0.500000
+  fail h,havg                0  0.000000   max T(hmin)/Tmin  1.0000
+  fail h,L                   0  0.000000   max L(hmin)/Lmin  1.0000
+  fail havg,L                0  0.000000   (evasive among them 0)
+  fail h,havg,L              0  0.000000
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
+ALL n=2 N=16
+  nonevasive                 6  0.375000
+  fail h,havg                0  0.000000   max T(hmin)/Tmin  1.0000
+  fail h,L                   0  0.000000   max L(hmin)/Lmin  1.0000
+  fail havg,L                0  0.000000   (evasive among them 0)
+  fail h,havg,L              0  0.000000
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
+ALL n=3 N=256
+  nonevasive                62  0.242188
+  fail h,havg                0  0.000000   max T(hmin)/Tmin  1.0000
+  fail h,L                   0  0.000000   max L(hmin)/Lmin  1.0000
+  fail havg,L                0  0.000000   (evasive among them 0)
+  fail h,havg,L              0  0.000000
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
+ALL n=4 N=65536
+  nonevasive              8406  0.128265
+  fail h,havg              384  0.005859   max T(hmin)/Tmin  1.0909
+  fail h,L                   0  0.000000   max L(hmin)/Lmin  1.0000
+  fail havg,L                0  0.000000   (evasive among them 0)
+  fail h,havg,L            384  0.005859
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
+  example fail h,havg: 0x3db
+MON n=1 N=3
+  nonevasive                 2  0.666667
+  fail h,havg                0  0.000000   max T(hmin)/Tmin  1.0000
+  fail h,L                   0  0.000000   max L(hmin)/Lmin  1.0000
+  fail havg,L                0  0.000000   (evasive among them 0)
+  fail h,havg,L              0  0.000000
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
+MON n=2 N=6
+  nonevasive                 4  0.666667
+  fail h,havg                0  0.000000   max T(hmin)/Tmin  1.0000
+  fail h,L                   0  0.000000   max L(hmin)/Lmin  1.0000
+  fail havg,L                0  0.000000   (evasive among them 0)
+  fail h,havg,L              0  0.000000
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
+MON n=3 N=20
+  nonevasive                11  0.550000
+  fail h,havg                0  0.000000   max T(hmin)/Tmin  1.0000
+  fail h,L                   0  0.000000   max L(hmin)/Lmin  1.0000
+  fail havg,L                0  0.000000   (evasive among them 0)
+  fail h,havg,L              0  0.000000
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
+MON n=4 N=168
+  nonevasive                66  0.392857
+  fail h,havg                0  0.000000   max T(hmin)/Tmin  1.0000
+  fail h,L                   0  0.000000   max L(hmin)/Lmin  1.0000
+  fail havg,L                0  0.000000   (evasive among them 0)
+  fail h,havg,L              0  0.000000
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
+MON n=5 N=7581
+  nonevasive              1467  0.193510
+  fail h,havg                0  0.000000   max T(hmin)/Tmin  1.0000
+  fail h,L                   0  0.000000   max L(hmin)/Lmin  1.0000
+  fail havg,L                0  0.000000   (evasive among them 0)
+  fail h,havg,L              0  0.000000
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
