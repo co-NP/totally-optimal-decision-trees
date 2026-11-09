@@ -1,0 +1,12 @@
+precomputed fronts for m <= 4 (max front size 2)
+ALL n=4 total=65536 nonevasive=8406 | fail h,havg=384  h,L=0  havg,L=0  h,havg,L=384
+MON n=5 total=7581 nonevasive=1467 | fail h,havg=0  h,L=0  havg,L=0  h,havg,L=0
+ALL n=5 total=4294967296 nonevasive=213632222 | fail h,havg=82399600  h,L=25188480  havg,L=37491280  h,havg,L=111745520
+pattern (nonev h,havg h,L havg,L h,havg,L; 1 = nonevasive / fails) -> count, example
+  0 0 0 0 0    4051989154  0x00000001
+  1 0 0 0 0     131232622  0x00000000
+  1 1 0 0 1      49217440  0x000003db
+  1 1 1 0 1      25036800  0x000c013b
+  0 0 0 1 1      29345920  0x000c011a
+  1 1 0 1 1       7993680  0x000c015d
+  1 1 1 1 1        151680  0x003c6f7d
