@@ -18,3 +18,4 @@
 41 s: ./totn -n 12 -s 3000 -seed 2026 -t 12
 30 s: ./totn -n 9 -s 100000 -seed 7 -t 12
 30 s: ./totn -n 9 -s 100000 -seed 31337 -t 12
+32 s: ./totn -n 9 -s 100000 -seed 1400000000 -mt -t 12

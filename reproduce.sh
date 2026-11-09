@@ -44,3 +44,6 @@ SIZES
 for seed in 7 31337; do
     run results_n9_seeds.txt ./totn -n 9 -s 100000 -seed "$seed" -t "$THREADS"
 done
+
+: > results_n9_mt.txt
+run results_n9_mt.txt ./totn -n 9 -s 100000 -seed 1400000000 -mt -t "$THREADS"

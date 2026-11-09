@@ -21,6 +21,8 @@
  *
  * Build:  cc -O3 -march=native -o totn totn.c -lpthread
  * Usage:  ./totn -n 8 -s 100000 [-seed 1] [-t threads]   random functions
+ *         ./totn -n 9 -s 100000 -seed 1400000000 -mt     random functions, bits from
+ *                                                        std::mt19937_64 (see below)
  *         ./totn -n 6 -mon                               all monotone functions
  *         ./totn -n 4 -all                               all functions (n <= 4)
  *         ./totn -n 6 -f HEX                             one function
@@ -255,6 +257,42 @@ typedef struct {
     stat_t st;
 } job_t;
 
+/*
+ * std::mt19937_64, used by -mt to generate functions the way the program BT
+ * (github.com/co-NP/BT) does: each truth-table bit is the low bit of one output,
+ * and each function has its own seed, truncated to 32 bits.
+ */
+typedef struct {
+    uint64_t x[312];
+    int i;
+} mt_t;
+
+static void mt_seed(mt_t *g, uint64_t seed)
+{
+    g->x[0] = seed;
+    for (int i = 1; i < 312; i++)
+        g->x[i] = 6364136223846793005ull * (g->x[i - 1] ^ (g->x[i - 1] >> 62)) + (uint64_t)i;
+    g->i = 312;
+}
+
+static uint64_t mt_next(mt_t *g)
+{
+    if (g->i >= 312) {
+        for (int k = 0; k < 312; k++) {
+            uint64_t y = (g->x[k] & 0xFFFFFFFF80000000ull) | (g->x[(k + 1) % 312] & 0x7FFFFFFFull);
+            g->x[k] = g->x[(k + 156) % 312] ^ (y >> 1) ^ ((y & 1) ? 0xB5026F5AA96619E9ull : 0);
+        }
+        g->i = 0;
+    }
+    uint64_t x = g->x[g->i++];
+    x ^= (x >> 29) & 0x5555555555555555ull;
+    x ^= (x << 17) & 0x71D67FFFEDA60000ull;
+    x ^= (x << 37) & 0xFFF7EEE000000000ull;
+    return x ^ (x >> 43);
+}
+
+static int USE_MT;
+
 static void *rand_worker(void *arg)
 {
     job_t *J = arg;
@@ -264,8 +302,17 @@ static void *rand_worker(void *arg)
     uint64_t tt[W(MAXN)];
     uint64_t mask = N >= 6 ? ~0ull : ((1ull << (1u << N)) - 1);
     for (uint64_t i = (uint64_t)J->id; i < J->count; i += (uint64_t)J->nth) {
-        for (uint32_t k = 0; k < W(N); k++)
-            tt[k] = splitmix(&rng) & mask;
+        if (USE_MT) {
+            mt_t g;
+            mt_seed(&g, (uint32_t)(J->seed + i * 1379117ull));
+            memset(tt, 0, sizeof tt);
+            for (uint32_t x = 0; x < (1u << N); x++)
+                if (mt_next(&g) % 2)
+                    tt[x >> 6] |= 1ull << (x & 63);
+        } else {
+            for (uint32_t k = 0; k < W(N); k++)
+                tt[k] = splitmix(&rng) & mask;
+        }
         res_t r;
         evaluate(&w, tt, &r);
         record(&J->st, &r, tt);
@@ -319,6 +366,7 @@ int main(int argc, char **argv)
         else if (!strcmp(argv[i], "-seed")) seed = strtoull(argv[++i], NULL, 10);
         else if (!strcmp(argv[i], "-t")) nth = atoi(argv[++i]);
         else if (!strcmp(argv[i], "-mon")) mon = 1;
+        else if (!strcmp(argv[i], "-mt")) USE_MT = 1;
         else if (!strcmp(argv[i], "-all")) all = 1;
         else if (!strcmp(argv[i], "-f")) one = argv[++i];
     }
