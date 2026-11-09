@@ -22,6 +22,7 @@ combination of the measures. They also determine whether the function is evasive
 | `results_small.txt` | Tables 3 and 5 for small n |
 | `results_general.txt` | Table 5 (n = 6), Table 6, and the sampled values in Table 1 |
 | `results_n9_seeds.txt` | Two further n = 9 runs with other seeds |
+| `results_n9_mt.txt` | An n = 9 run with `std::mt19937_64`, as in the program [BT](https://github.com/co-NP/BT) |
 | `runtimes.txt` | Wall-clock time of each run |
 
 ## Reproducing the results
@@ -34,7 +35,7 @@ Python 3.
 ```
 
 This takes about 25 minutes on a 12-core machine. The published files were produced
-on an Apple M3 Pro (12 cores, 18 GB) with Apple clang 21. Release `v1.0` is the
+on an Apple M3 Pro (12 cores, 18 GB) with Apple clang 21. Release `v1.1` is the
 version cited in the paper.
 
 ## Sampling
@@ -46,6 +47,11 @@ generator state, so the sampled functions depend on the thread count as well as 
 seed: keep `THREADS=12` to obtain the published files exactly. The exhaustive runs
 give the same counts for any thread count, although the example functions they print
 may differ.
+
+The option `-mt` of `totn` replaces SplitMix64 by `std::mt19937_64`, taking each
+truth-table bit from the low bit of one output and using a separate seed for each
+function, truncated to 32 bits. It is used only for the run in `results_n9_mt.txt`,
+which compares with the samples of the 2016 paper.
 
 ## Other commands
 

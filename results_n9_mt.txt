@@ -1,0 +1,10 @@
+RAND n=9 N=100000
+  nonevasive                 0  0.000000
+  fail h,havg                0  0.000000   max T(hmin)/Tmin  1.0000
+  fail h,L                   0  0.000000   max L(hmin)/Lmin  1.0000
+  fail havg,L            86791  0.867910   (evasive among them 86791)
+  fail h,havg,L          86791  0.867910
+  havg,L failures: mean L(Tmin)/Lmin 1.0154 (max 1.0730), mean T(Lmin)/Tmin 1.0034 (max 1.0178)
+  fail h,havg,L but every pair ok 0
+  fail h,L but h,havg ok          0
+  example fail havg,L: 0x0faca711d8137be65a6bab7268676ae3969c06a770149e07869af6d60e45ff1ca7ac6adeed28bbefc0e76e0ade9435b484942569a4b8565b8d7f20cad8363bf2
